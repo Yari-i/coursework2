@@ -90,4 +90,18 @@ class JavaQuestionServiceImplTest {
         assertTrue(questions.contains(randomQuestion));
 
     }
+
+    @Test
+    void uniqueQuestionAndAnswer() {
+
+        Question question1 = new Question("question", "answer");
+        Question question2 = new Question("q", "a");
+
+        questionService.add(question1);
+        questionService.add(question2);
+
+        assertNotEquals(question1, question2);
+
+
+    }
 }
