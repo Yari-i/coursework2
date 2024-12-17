@@ -5,6 +5,7 @@ import pro.sky.coursework2.examQuestion.model.Question;
 import pro.sky.coursework2.examQuestion.service.QuestionService;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -95,13 +96,21 @@ class JavaQuestionServiceImplTest {
     void uniqueQuestionAndAnswer() {
 
         Question question1 = new Question("question", "answer");
-        Question question2 = new Question("q", "a");
+        Question question2 = new Question("question", "answer");
+
 
         questionService.add(question1);
+
         questionService.add(question2);
 
-        assertNotEquals(question1, question2);
+
+        Collection<Question> expectedQuestionCollection = new HashSet<>();
+        expectedQuestionCollection.add(question1);
 
 
+        Collection<Question> actualQuestionCollections = questionService.getAll();
+
+
+        assertEquals(expectedQuestionCollection, actualQuestionCollections);
     }
 }
